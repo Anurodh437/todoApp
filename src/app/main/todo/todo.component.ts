@@ -7,14 +7,13 @@ import { CrudTaskService } from 'src/app/crud-task.service';
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
-  
-  public task: string;
-  constructor(private crudService: CrudTaskService) {
+  task: any = '';
+
+  constructor(public crudService: CrudTaskService) {
     this.task = '';
   }
 
   ngOnInit(): void {}
-  
 
   public addTask(): void {
     this.crudService.addTask(this.task);
