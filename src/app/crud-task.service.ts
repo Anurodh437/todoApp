@@ -26,13 +26,15 @@ export class CrudTaskService {
     let task = new Task(this.id, text);
     let tasks = this.getTasks();
     tasks.push(task);
-
     this.setLocalStorage(tasks);
     this.id++;
   }
 
   public removeTask(id: number): void {
-    this.tasks = this.tasks.filter((task) => task.id != id);
+    // this.tasks = this.tasks.filter((task) => task.id != id);
+    this.tasks.slice(id,1);
+    console.log("delete called");
+    
   }
 
   private setLocalStorage(tasks: Task[]): void {
