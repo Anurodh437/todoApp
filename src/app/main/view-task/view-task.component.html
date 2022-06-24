@@ -1,0 +1,24 @@
+<div>
+    <button (click)="back()" class="px-2 m-3">Back</button>
+  <div class="d-flex justify-content-center">
+    <div class="card w-50 p-4 mt-5">
+      <h1 class="underline">Tasks:-</h1>
+      <table
+        class="table table-bordered border border-2 border-dark table-hover"
+      >
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Tasks</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of crudService.getTasks()">
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.task }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

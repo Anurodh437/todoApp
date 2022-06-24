@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudTaskService } from 'src/app/crud-task.service';
+import { CrudTaskService } from 'src/app/service/crud-task.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -7,16 +9,31 @@ import { CrudTaskService } from 'src/app/crud-task.service';
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
-  task: any = '';
+  tasks: any = [];
 
-  constructor(public crudService: CrudTaskService) {
-    this.task = '';
-  }
+  constructor(
+    public crudService: CrudTaskService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+
+  taskForm = this.fb.group({
+    task: ['', Validators.required],
+  });
 
   ngOnInit(): void {}
 
-  public addTask(): void {
-    this.crudService.addTask(this.task);
-    this.task = '';
+  public addTask(taskForm: any): void {
+    this.crudService.addTask(taskForm.value);
+    this.tasks = this.crudService.getTasks();
+    this.taskForm.reset();
+  }
+
+  // called(){
+  //   console.log(this.tasks);
+  // }
+
+  redirectPage() {
+    this.router.navigate(['/tasks']);
   }
 }
