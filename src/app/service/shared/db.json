@@ -1,0 +1,30 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        },
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        },
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        }
+    ],
+    "registeredUser": [
+        {
+            "id": 1,
+            "first_name": "Sebastian",
+            "last_name": "Eschweiler",
+            "email": "sebastian@codingthesmartway.com"
+        }
+    ],
+    "profile": {
+        "name": "typicode"
+    }
+}
