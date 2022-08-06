@@ -6,10 +6,11 @@ import { TodoComponent } from './todo/todo.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'addTask', component: TodoComponent },
   { path: 'tasks', component: ViewTaskComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', component: SignupComponent }
+  { path: 'register', component: SignupComponent }
 ];
 
 @NgModule({

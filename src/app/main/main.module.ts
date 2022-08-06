@@ -14,13 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
     ViewTaskComponent,
     LoginComponent,
     SignupComponent,
-    HttpClientModule
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class MainModule { }
