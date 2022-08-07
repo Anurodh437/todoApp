@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiService } from './service/api.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       preventDuplicates: true,

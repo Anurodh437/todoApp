@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.invalid){
     this.toastr.error('Required Field cannot be Empty!');
     }
-    // this.toastr.error('Hello Welcme');
-
     // this.spinner.show();
     // setTimeout(() => {
     //   this.spinner.hide();
