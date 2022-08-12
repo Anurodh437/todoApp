@@ -13,6 +13,6 @@ export class ViewTaskComponent implements OnInit {
   ngOnInit(): void {}
 
   back(){
-    this.router.navigate(['']);
+    this.router.navigate(['/addTask']);
   }
 }

@@ -9,6 +9,7 @@ import { ApiService } from './service/api.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
       timeOut: 5000,
       preventDuplicates: true,
     })],
-  providers: [CrudTaskService, ApiService],
+  providers: [CrudTaskService, ApiService, AuthService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
