@@ -7,7 +7,6 @@ import { ViewTaskComponent } from './view-task/view-task.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-    ToastrModule.forRoot(),
-  ]
+  ],
 })
-export class MainModule { }
+export class MainModule {}
