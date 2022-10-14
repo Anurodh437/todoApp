@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  id: any;
   constructor(
     private toast: HotToastService,
     private spinner: NgxSpinnerService,
     private _fb: FormBuilder,
     public api: ApiService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
   public loginForm!: FormGroup;
   ngOnInit(): void {
@@ -50,9 +53,24 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    // this.id = this.toast.loading('Loading....');
     if (this.loginForm.invalid) {
-      this.toast.error('Required Field cannot be Empty!');
+      this.toast.error('Please fill all the fields!');
+    } else {
+      this.authService.authenticateUser(this.loginForm.value).subscribe({
+        next: (data: any) => {
+          // this.id.close();
+          this.toast.success(data.message);
+          this.spinner.hide();
+          this.router.navigate(['/tasks']);
+        },
+        error: (e) => {
+          // this.id.close();
+          this.spinner.hide();
+          console.log(e);
+          this.toast.error(e.error.message);
+        },
+      });
     }
-    this.api.getUsers(this.loginForm);
   }
 }
