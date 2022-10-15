@@ -86,7 +86,7 @@ export class SignupComponent implements OnInit {
   }
 
   async register() {
-    this.id = this.toast.loading('Creating User....');
+    // this.id = this.toast.loading('Creating User....');
     if (this.registerForm.invalid) {
       // this.toast.error('Required Fields cannot be Empty!');
       if (this.registerForm.get('check')?.errors?.['required']) {
@@ -102,17 +102,15 @@ export class SignupComponent implements OnInit {
       if (this.registerForm.valid) {
         this.authService.registerUser(this.registerForm.value).subscribe({
           next: (data: any) => {
-            this.id.close();
-            this.spinner.show();
-            setTimeout(() => {
-              this.spinner.hide();
-            }, 1000);
+            // this.id.close();
+            this.spinner.hide();
             this.router.navigate(['/login']);
             this.toast.success(data.message + ', Please login!');
           },
           error: (e) => {
+            this.spinner.hide();
             this.toast.error(e.error.message);
-            this.id.close();
+            // this.id.close();
           },
         });
       }
