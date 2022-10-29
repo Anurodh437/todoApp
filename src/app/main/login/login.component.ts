@@ -60,9 +60,11 @@ export class LoginComponent implements OnInit {
       this.authService.authenticateUser(this.loginForm.value).subscribe({
         next: (data: any) => {
           // this.id.close();
+          console.log(data.data.token);
+          this.authService.storeUserData(data.data.token)
           this.toast.success(data.message);
           this.spinner.hide();
-          this.router.navigate(['/tasks']);
+          // this.router.navigate(['/tasks']);
         },
         error: (e) => {
           // this.id.close();

@@ -14,7 +14,7 @@ export class AuthService {
     let header = new HttpHeaders();
     header.append('content-type', 'application/json');
     return this.http.post(
-      'https://tomdo.herokuapp.com/api/users/register',
+      'http://localhost:5000/api/users/register',
       value,
       {
         headers: header,
@@ -34,5 +34,9 @@ export class AuthService {
         headers: header,
       }
     );
+  }
+
+  storeUserData(token:any){
+    localStorage.setItem('auth_token',token)
   }
 }
