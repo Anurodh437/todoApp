@@ -14,7 +14,7 @@ export class AuthService {
     let header = new HttpHeaders();
     header.append('content-type', 'application/json');
     return this.http.post(
-      'http://localhost:5000/api/users/register',
+      'https://todotracker-cho3.onrender.com/api/users/register',
       value,
       {
         headers: header,
@@ -28,7 +28,7 @@ export class AuthService {
     let header = new HttpHeaders();
     header.append('content-type', 'application/json');
     return this.http.post(
-      'http://localhost:5000/api/users/login',
+      'https://todotracker-cho3.onrender.com/api/users/login',
       value,
       {
         headers: header,
@@ -36,7 +36,7 @@ export class AuthService {
     );
   }
 
-  storeUserData(token:any){
-    localStorage.setItem('auth_token',token)
+  storeUserData(token: any) {
+    localStorage.setItem('auth_token', token);
   }
 }

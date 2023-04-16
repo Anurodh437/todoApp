@@ -60,8 +60,7 @@ export class LoginComponent implements OnInit {
       this.authService.authenticateUser(this.loginForm.value).subscribe({
         next: (data: any) => {
           // this.id.close();
-          console.log(data.data.token);
-          this.authService.storeUserData(data.data.token)
+          this.authService.storeUserData(data.data.token);
           this.toast.success(data.message);
           this.spinner.hide();
           this.router.navigate(['/tasks']);
@@ -69,7 +68,6 @@ export class LoginComponent implements OnInit {
         error: (e) => {
           // this.id.close();
           this.spinner.hide();
-          console.log(e);
           this.toast.error(e.error.message);
         },
       });

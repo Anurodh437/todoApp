@@ -8,12 +8,14 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 @NgModule({
   declarations: [
     TodoComponent,
     ViewTaskComponent,
     LoginComponent,
     SignupComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     CommonModule,
