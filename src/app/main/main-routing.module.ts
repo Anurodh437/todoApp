@@ -6,6 +6,7 @@ import { SignupComponent } from './signup/signup.component';
 import { TodoComponent } from './todo/todo.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ProfileScreenComponent } from './profile-screen/profile-screen.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -21,10 +22,15 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard],
   },
+  {
+    path: 'profile',
+    component: ProfileScreenComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+  },
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: SignupComponent, pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
-
 ];
 
 @NgModule({

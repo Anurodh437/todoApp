@@ -1,24 +1,63 @@
-body{
-    background-image: url('https://webgradients.com/public/webgradients_png/019%20Malibu%20Beach.png');
+body {
+  background-image: url("./assets/019\ Malibu\ Beach.png");
 }
 
-.hello{
-    position: absolute;
-    right: 8rem;
-    z-index: 10000;
+.bg-gradients {
+  background: rgb(0, 212, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 212, 255, 1) 0%,
+    rgba(41, 172, 237, 1) 35%,
+    rgba(83, 90, 222, 1) 100%
+  );
+  -webkit-box-shadow: 0px 7px 17px 6px rgba(0, 0, 0, 0.55);
+  -moz-box-shadow: 0px 7px 17px 6px rgba(0, 0, 0, 0.55);
+  box-shadow: 0px 7px 17px 6px rgba(0, 0, 0, 0.55);
 }
 
-.hellos{
-    position: absolute;
-    right: 4rem;
-    z-index: 100000;
+.btn-adjust {
+  position: absolute;
+  right: 9rem;
+  z-index: 99;
 }
 
-@media only screen and (max-width:768px) {
-    .hello{
-        right: 5rem;
-    }
-    .hellos{
-        right: 1rem;
-    }
+.btn-adjust-delete {
+  position: absolute;
+  right: 5rem;
+  z-index: 99;
 }
+
+.form-control:focus {
+  box-shadow: none;
+}
+.btn:focus{
+  box-shadow: non;
+}
+
+@media only screen and (max-width: 1024px) {
+  .btn-adjust {
+    right: 3.5rem;
+  }
+  .btn-adjust-delete {
+    right: 7.5rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .btn-adjust {
+    right: 3rem;
+  }
+  .btn-adjust-delete {
+    right: 7rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .btn-adjust {
+    right: 1.5rem;
+  }
+  .btn-adjust-delete {
+    right: 5rem;
+  }
+}
+

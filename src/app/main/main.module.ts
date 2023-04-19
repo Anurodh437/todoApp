@@ -9,6 +9,9 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { WelcometitleComponent } from './welcometitle/welcometitle.component';
+import { ProfileScreenComponent } from './profile-screen/profile-screen.component';
 @NgModule({
   declarations: [
     TodoComponent,
@@ -16,6 +19,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     LoginComponent,
     SignupComponent,
     PagenotfoundComponent,
+    NavbarComponent,
+    WelcometitleComponent,
+    ProfileScreenComponent,
   ],
   imports: [
     CommonModule,
