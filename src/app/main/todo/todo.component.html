@@ -1,86 +1,53 @@
-<div
-  class="container d-flex justify-content-center align-items-center flex-column"
->
-  <div
-    class="card d-flex justify-content-center align-items-center mt-5 w-100 shadow-lg p-2"
-  >
-    <!-- title and input field -->
-    <div class="card shadow w-100">
-      <div class="rounded bg-secondary p-2">
-        <span class="title">Todo List</span>
-        <span
-          ><img
-            width="20"
-            height="18"
-            src="../../../assets/icons8-edit-30.png"
-            alt="edit"
-        /></span>
-      </div>
-      <form [formGroup]="taskForm" class="input-group mb-1 p-3">
-        <input
-          formControlName="task"
-          type="text"
-          class="form-control"
-          placeholder="Enter the task"
-          name="task"
-        />
-        <button
-          [disabled]="taskForm.invalid"
-          class="btn btn-info btn-outline-dark"
-          type="button"
-          (click)="addTask(taskForm)"
-        >
-          {{ crudService.getEditMode ? "Update Task" : "Add Task" }}
-        </button>
+<app-navbar></app-navbar>
+<div class="container pt-3">
+  <div class="fs-1">Create a New Task</div>
+  <hr />
+  <div class="card">
+    <div class="card-header">Create a New Task</div>
+    <div class="card-body">
+      <form [formGroup]="createTaskForm">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Title"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >Content</label
+          >
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            placeholder="Description.."
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >Priority</label
+          >
+          <ng-select
+            [items]="priority"
+            bindLabel="name"
+            placeholder="Select"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="selectedValue"
+          >
+          </ng-select>
+          {{selectedValue?.name}}
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-primary me-3" type="submit">
+            Create Task
+          </button>
+          <button class="btn btn-danger" type="reset">Reset Field</button>
+        </div>
       </form>
     </div>
-    <!-- display area -->
-    <div class="mt-3 w-100">
-      <div *ngFor="let item of crudService.getTasks(); index as i">
-        <!-- main div to display content -->
-        <div
-          class="card shadow p-2 mb-2 d-flex flex-row justify-content-between align-items-center"
-        >
-          <!-- div of tasks -->
-          <div class="ms-3 overflow-auto">
-            <div class="">{{ item.task }}</div>
-          </div>
-          <!--div of button for edit and delete -->
-          <div class="d-flex justify-content-center align-items-center">
-            <!-- edit button -->
-            <button
-              (click)="crudService.editTask(i, taskForm)"
-              class="edit btn border border-2 border-success d-flex justify-content-center align-items-center"
-            >
-              <img
-                width="20"
-                height="20"
-                src="../../../assets/icons8-edit-64.png"
-                alt="edit"
-              />
-            </button>
-            <!-- delete button -->
-            <button
-              (click)="crudService.removeTask(i)"
-              class="delete btn border border-2 border-danger d-flex justify-content-center align-items-center ms-3 me-2"
-            >
-              <img
-                class=""
-                width="20"
-                height="20"
-                src="../../../assets/icons8-delete-30.png"
-                alt="delete"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="card-footer">Creating On :- {{ currentDateTime }}</div>
   </div>
-
-  <!-- redirect button -->
-  <button (click)="redirectPage()" class="btn btn-primary mt-5">
-    View Task
-  </button>
-  <!-- end -->
 </div>

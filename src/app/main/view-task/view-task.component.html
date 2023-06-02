@@ -1,8 +1,8 @@
 <div>
-  <app-navbar></app-navbar>
+  <app-navbar (newItemEvent)="inputValue"></app-navbar>
   <app-welcometitle></app-welcometitle>
   <div class="container">
-    <button type="button" class="btn btn-primary mb-3">Create New Task</button>
+    <button type="button" class="btn btn-primary mb-3" (click)="navigateToUrl()">Create New Task</button>
     <!-- checking accordion -->
     <div class="accordion" id="accordionExample">
       <div

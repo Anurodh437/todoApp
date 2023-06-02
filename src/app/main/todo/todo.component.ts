@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudTaskService } from 'src/app/service/crud-task.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { CrudTaskService } from 'src/app/main/service/crud-task.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-todo',
@@ -9,31 +10,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
-  tasks: any = [];
-
   constructor(
     public crudService: CrudTaskService,
     private fb: FormBuilder,
     private router: Router
   ) {}
+  selectedValue: any;
+  priority = [
+    { id: 1, name: 'Low' },
+    { id: 2, name: 'Medium' },
+    { id: 3, name: 'High' },
+  ];
 
-  taskForm = this.fb.group({
-    task: ['', Validators.required],
-  });
+  public createTaskForm!: FormGroup;
+  currentDateTime: any;
 
-  ngOnInit(): void {}
-
-  public addTask(taskForm: any): void {
-    this.crudService.addTask(taskForm.value);
-    this.tasks = this.crudService.getTasks();
-    this.taskForm.reset();
-  }
-
-  // called(){
-  //   console.log(this.tasks);
-  // }
-
-  redirectPage() {
-    this.router.navigate(['/tasks']);
+  ngOnInit(): void {
+    this.createTaskForm = this.fb.group({});
+    this.currentDateTime =
+      moment().format('DD-MM-YYYY') + ', ' + moment().format('LT');
   }
 }

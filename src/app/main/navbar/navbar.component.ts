@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  searchValue: any;
 
-  constructor() { }
+  @Output() newItemEvent = new EventEmitter<string>();
 
-  ngOnInit(): void {
+  addNewItem(value: string) {
+    this.newItemEvent.emit(value);
   }
-  logout(){
-    console.log("logged out");
-    
+
+  constructor() {}
+
+  ngOnInit(): void {}
+  logout() {
+    console.log('logged out');
   }
 }

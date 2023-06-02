@@ -1,3 +1,5 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 body {
   background-image: url("./assets/019\ Malibu\ Beach.png");
 }
@@ -61,3 +63,6 @@ body {
   }
 }
 
+.navbar-toggler:focus{
+  box-shadow: none;
+}

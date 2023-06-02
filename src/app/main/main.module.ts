@@ -12,6 +12,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WelcometitleComponent } from './welcometitle/welcometitle.component';
 import { ProfileScreenComponent } from './profile-screen/profile-screen.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { CrudTaskService } from './service/crud-task.service';
+import { AuthService } from '../auth.service';
 @NgModule({
   declarations: [
     TodoComponent,
@@ -30,6 +33,8 @@ import { ProfileScreenComponent } from './profile-screen/profile-screen.componen
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
+    NgSelectModule
   ],
+  providers: [CrudTaskService, AuthService],
 })
 export class MainModule {}
