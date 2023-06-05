@@ -1,13 +1,23 @@
 <div>
-  <app-navbar (newItemEvent)="inputValue"></app-navbar>
+  <app-navbar></app-navbar>
   <app-welcometitle></app-welcometitle>
   <div class="container">
-    <button type="button" class="btn btn-primary mb-3" (click)="navigateToUrl()">Create New Task</button>
+    <button
+      type="button"
+      class="btn btn-primary mb-3"
+      (click)="navigateToUrl()"
+    >
+      Create New Task
+    </button>
     <!-- checking accordion -->
     <div class="accordion" id="accordionExample">
       <div
         class="accordion-item mb-2"
-        *ngFor="let item of [1, 2, 3, 4, 5]; let i = index"
+        *ngFor="
+          let item of globals.filteredData
+            | paginate : { itemsPerPage: 8, currentPage: p };
+          let i = index
+        "
       >
         <h2
           class="accordion-header d-flex align-items-center justifiy-content-between"
@@ -21,7 +31,7 @@
             aria-expanded="false"
             aria-controls="collapseThree"
           >
-            Accordion Item {{ i }}
+            {{ item.title }}
           </button>
           <button class="btn-adjust btn btn-primary" (click)="opens()">
             <img
@@ -41,18 +51,28 @@
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
-            <div class="badge bg-success">Category - Success</div>
+            <div class="badge bg-success">
+              Priority - {{ item?.priority["name"] }}
+            </div>
             <figure>
               <blockquote class="blockquote">
-                <p>A well-known quote, contained in a blockquote element.</p>
+                <p class="text-break">{{ item.content }}</p>
               </blockquote>
               <figcaption class="blockquote-footer">
-                Created on <cite title="Source Title"> 2021-06-10</cite>
+                Created on
+                <cite title="Source Title">
+                  {{ item.updatedAt.slice(0, 10) }}</cite
+                >
               </figcaption>
             </figure>
           </div>
         </div>
       </div>
     </div>
+    <span>Total result(s) found : {{ globals?.taskArray?.length }}</span>
+    <pagination-controls
+      class="float-end"
+      (pageChange)="p = $event"
+    ></pagination-controls>
   </div>
 </div>

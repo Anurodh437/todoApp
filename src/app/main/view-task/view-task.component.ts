@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HotToastModule, HotToastService } from '@ngneat/hot-toast';
 import { CrudTaskService } from 'src/app/main/service/crud-task.service';
+import { GlobalsService } from '../service/globals.service';
 
 @Component({
   selector: 'app-view-task',
@@ -10,14 +11,28 @@ import { CrudTaskService } from 'src/app/main/service/crud-task.service';
 })
 export class ViewTaskComponent implements OnInit {
   inputValue: any;
+  userInfo: any;
+  p: number = 1;
   constructor(
     public crudService: CrudTaskService,
     private router: Router,
-    private toast: HotToastService
+    private toast: HotToastService,
+    public globals:GlobalsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userInfo = JSON.parse(sessionStorage.getItem('user-profile') || '{}');
+    this.fetchDetails();
+  }
 
+  fetchDetails() {
+    this.crudService.getTasks(this.userInfo['token']).subscribe({
+      next: (data: any) => {
+        this.globals.taskArray = data;
+        this.globals.filteredData = this.globals.taskArray;
+      },
+    });
+  }
   opens() {
     this.toast.show('jdhfjdbfhj');
   }

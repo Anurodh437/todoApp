@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { GlobalsService } from '../service/globals.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,15 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  searchValue: any;
-
-  @Output() newItemEvent = new EventEmitter<string>();
-
-  addNewItem(value: string) {
-    this.newItemEvent.emit(value);
-  }
-
-  constructor() {}
+  constructor(public globals: GlobalsService) {}
 
   ngOnInit(): void {}
   logout() {

@@ -36,7 +36,11 @@ export class AuthService {
     );
   }
 
-  storeUserData(token: any) {
-    localStorage.setItem('auth_token', token);
+  storeUserData(data: any) {
+    sessionStorage.setItem('user-profile', JSON.stringify(data));
+  }
+
+  storeToken(token: any) {
+    sessionStorage.setItem('auth-token', token);
   }
 }

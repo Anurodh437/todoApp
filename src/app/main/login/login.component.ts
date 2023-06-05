@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from 'src/app/main/service/api.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/main/service/auth.service';
+import { GlobalsService } from '../service/globals.service';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +17,8 @@ export class LoginComponent implements OnInit {
     private toast: HotToastService,
     private spinner: NgxSpinnerService,
     private _fb: FormBuilder,
-    public api: ApiService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
   public loginForm!: FormGroup;
   ngOnInit(): void {
@@ -60,7 +59,8 @@ export class LoginComponent implements OnInit {
       this.authService.authenticateUser(this.loginForm.value).subscribe({
         next: (data: any) => {
           // this.id.close();
-          this.authService.storeUserData(data.data.token);
+          this.authService.storeToken(data.data.token);
+          this.authService.storeUserData(data.data);
           this.toast.success(data.message);
           this.spinner.hide();
           this.router.navigate(['/tasks']);

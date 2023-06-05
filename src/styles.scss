@@ -1,7 +1,7 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
 body {
-  background-image: url("./assets/019\ Malibu\ Beach.png");
+  background-color: aliceblue;
 }
 
 .bg-gradients {
@@ -12,9 +12,9 @@ body {
     rgba(41, 172, 237, 1) 35%,
     rgba(83, 90, 222, 1) 100%
   );
-  -webkit-box-shadow: 0px 7px 17px 6px rgba(0, 0, 0, 0.55);
-  -moz-box-shadow: 0px 7px 17px 6px rgba(0, 0, 0, 0.55);
-  box-shadow: 0px 7px 17px 6px rgba(0, 0, 0, 0.55);
+  -webkit-box-shadow: 0px 1px 10px 4px rgba(0, 0, 0, 0.55);
+  -moz-box-shadow: 0px 1px 10px 4px rgba(0, 0, 0, 0.55);
+  box-shadow: 0px 1px 10px 4px rgba(0, 0, 0, 0.55);
 }
 
 .btn-adjust {
@@ -61,6 +61,14 @@ body {
   .btn-adjust-delete {
     right: 5rem;
   }
+}
+
+.accordion-item:not(:first-of-type) {
+  border-top: outset !important;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
 }
 
 .navbar-toggler:focus{

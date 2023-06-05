@@ -15,6 +15,7 @@ import { ProfileScreenComponent } from './profile-screen/profile-screen.componen
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CrudTaskService } from './service/crud-task.service';
 import { AuthService } from '../auth.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     TodoComponent,
@@ -33,7 +34,8 @@ import { AuthService } from '../auth.service';
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-    NgSelectModule
+    NgSelectModule,
+    NgxPaginationModule
   ],
   providers: [CrudTaskService, AuthService],
 })

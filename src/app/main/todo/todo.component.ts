@@ -16,18 +16,33 @@ export class TodoComponent implements OnInit {
     private router: Router
   ) {}
   selectedValue: any;
-  priority = [
-    { id: 1, name: 'Low' },
-    { id: 2, name: 'Medium' },
-    { id: 3, name: 'High' },
-  ];
+  priority = [{ name: 'Low' }, { name: 'Medium' }, { name: 'High' }];
 
   public createTaskForm!: FormGroup;
   currentDateTime: any;
+  userInfo: any;
 
   ngOnInit(): void {
-    this.createTaskForm = this.fb.group({});
+    this.userInfo = JSON.parse(sessionStorage.getItem('user-profile') || '{}');
+    this.createTaskForm = this.fb.group({
+      title: [''],
+      content: [''],
+      priority: [null],
+    });
     this.currentDateTime =
       moment().format('DD-MM-YYYY') + ', ' + moment().format('LT');
+  }
+
+  createTask() {
+    this.crudService
+      .addTask(this.userInfo['token'], this.createTaskForm.value)
+      .subscribe({
+        next: (data: any) => {
+          this.router.navigate(['/tasks']);
+        },
+        error: (err: any) => {
+          alert(err.message);
+        },
+      });
   }
 }

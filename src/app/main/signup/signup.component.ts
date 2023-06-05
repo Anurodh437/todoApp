@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiService } from 'src/app/main/service/api.service';
 import { AuthService } from 'src/app/main/service/auth.service';
 
 @Component({
@@ -21,7 +20,6 @@ export class SignupComponent implements OnInit {
     private authService: AuthService,
     private spinner: NgxSpinnerService,
     private _fb: FormBuilder,
-    private api: ApiService,
     private router: Router,
     private toast: HotToastService
   ) {}

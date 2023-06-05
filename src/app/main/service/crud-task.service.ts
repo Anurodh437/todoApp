@@ -7,22 +7,32 @@ import { NgxSpinnerService } from 'ngx-spinner';
   providedIn: 'root',
 })
 export class CrudTaskService {
+  userInfo: any;
   constructor(private http: HttpClient, private spinner: NgxSpinnerService) {}
 
+  ngOnInit(): void {}
+
   // method to get or fetch all tasks
-  public getTasks(value: any) {
-    let header = new HttpHeaders();
-    header.append('Authorization', `Bearer ${'545354355'}`);
-    return this.http.get(
-      'https://todotracker-cho3.onrender.com/api/users/register',
-      {
-        headers: header,
-      }
-    );
+  public getTasks(token: any) {
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get('http://localhost:5000/api/tasks', {
+      headers: header,
+    });
   }
 
   // method to add task to localstorage and todolist
-  public addTask(texts: any): void {}
+  public addTask(token: any, value: any) {
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post('http://localhost:5000/api/tasks/create', value, {
+      headers: header,
+    });
+  }
 
   // method to remome data from localstorage as well as todolist
   public removeTask(id: number): void {}
