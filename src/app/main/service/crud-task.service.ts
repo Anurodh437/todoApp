@@ -18,7 +18,7 @@ export class CrudTaskService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     });
-    return this.http.get('http://localhost:5000/api/tasks', {
+    return this.http.get('https://todotracker-cho3.onrender.com/api/tasks', {
       headers: header,
     });
   }
@@ -29,7 +29,7 @@ export class CrudTaskService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     });
-    return this.http.post('http://localhost:5000/api/tasks/create', value, {
+    return this.http.post('https://todotracker-cho3.onrender.com/api/tasks/create', value, {
       headers: header,
     });
   }
