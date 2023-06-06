@@ -3,6 +3,7 @@ import { CrudTaskService } from 'src/app/main/service/crud-task.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-todo',
@@ -13,7 +14,8 @@ export class TodoComponent implements OnInit {
   constructor(
     public crudService: CrudTaskService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toast: HotToastService
   ) {}
   selectedValue: any;
   priority = [{ name: 'Low' }, { name: 'Medium' }, { name: 'High' }];
@@ -39,6 +41,7 @@ export class TodoComponent implements OnInit {
       .subscribe({
         next: (data: any) => {
           this.router.navigate(['/tasks']);
+          this.toast.success("Task Created Successfully")
         },
         error: (err: any) => {
           alert(err.message);

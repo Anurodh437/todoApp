@@ -18,8 +18,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     HttpClientModule,
-    HotToastModule.forRoot(),
-    NgxPaginationModule
+    HotToastModule.forRoot({
+      position: 'top-right',
+      duration: 4000
+    }),
+    NgxPaginationModule,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

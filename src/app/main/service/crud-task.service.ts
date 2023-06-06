@@ -14,6 +14,7 @@ export class CrudTaskService {
 
   // method to get or fetch all tasks
   public getTasks(token: any) {
+    this.spinner.show();
     let header = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -25,6 +26,7 @@ export class CrudTaskService {
 
   // method to add task to localstorage and todolist
   public addTask(token: any, value: any) {
+    this.spinner.show();
     let header = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

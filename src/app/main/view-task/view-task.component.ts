@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HotToastModule, HotToastService } from '@ngneat/hot-toast';
 import { CrudTaskService } from 'src/app/main/service/crud-task.service';
 import { GlobalsService } from '../service/globals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-view-task',
@@ -17,7 +18,9 @@ export class ViewTaskComponent implements OnInit {
     public crudService: CrudTaskService,
     private router: Router,
     private toast: HotToastService,
-    public globals:GlobalsService
+    public globals:GlobalsService,
+    private spinner: NgxSpinnerService
+    
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +33,7 @@ export class ViewTaskComponent implements OnInit {
       next: (data: any) => {
         this.globals.taskArray = data;
         this.globals.filteredData = this.globals.taskArray;
+        this.spinner.hide()
       },
     });
   }
