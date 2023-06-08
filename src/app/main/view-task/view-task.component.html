@@ -14,7 +14,7 @@
       <ngx-skeleton-loader count="5"></ngx-skeleton-loader>
     </div>
 
-    <div class="accordion" id="accordionExample">
+    <div class="accordion" id="accordionExample" *ngIf="!globals?.showLoader">
       <div
         class="accordion-item mb-2"
         *ngFor="
@@ -35,7 +35,7 @@
             aria-expanded="false"
             aria-controls="collapseThree"
           >
-            {{ item.title }}
+            <div class="text-truncate w-50">{{ item.title }}</div>
           </button>
           <button class="btn-adjust btn btn-primary" (click)="editTask(item)">
             <img
@@ -44,7 +44,7 @@
           </button>
           <button
             class="btn-adjust-delete btn btn-danger"
-            (click)="deleteTask()"
+            (click)="deleteTask(item)"
           >
             <img
               src="https://img.icons8.com/material-rounded/24/ffffff/filled-trash.png"
@@ -91,8 +91,11 @@
         </div>
       </div>
     </div>
-    <span>Total result(s) found : {{ globals?.filteredData?.length }}</span>
+    <span *ngIf="!globals?.showLoader"
+      >Total result(s) found : {{ globals?.filteredData?.length }}</span
+    >
     <pagination-controls
+      *ngIf="!globals?.showLoader"
       class="float-end"
       (pageChange)="p = $event"
     ></pagination-controls>

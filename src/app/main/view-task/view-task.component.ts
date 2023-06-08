@@ -38,12 +38,13 @@ export class ViewTaskComponent implements OnInit {
       },
     });
   }
-  editTask(i:any) {
-    this.toast.show('jdhfjdbfhj');
-    console.log("dubey",i._id);
+  editTask(taskData: any) {
+    this.globals.editCheck = true;
+    this.globals.editdata = taskData
+    this.router.navigate(['/addTask'])
   }
 
-  deleteTask() {
+  deleteTask(item: any) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -51,19 +52,25 @@ export class ViewTaskComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
+        this.crudService
+          .removeTask(item._id, this.userInfo['token'])
+          .subscribe({
+            next: (data: any) => {
+              this.fetchDetails();
+              this.toast.success('Task Deleted Successfully!');
+              this.spinner.hide();
+            },
+            error: (err: any) => {
+              this.toast.error('Something Went Wrong!');
+              this.spinner.hide();
+            },
+          });
       }
-    })
-    
+    });
   }
-
 
   navigateToUrl() {
     this.router.navigate(['/addTask']);

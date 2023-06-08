@@ -47,14 +47,14 @@ export class CrudTaskService {
   }
 
   // method to remome data from localstorage as well as todolist
-  public removeTask(id: number) {
+  public removeTask(data: number, Token: any) {
     this.spinner.show();
     let header = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${Token}`,
     });
     return this.http.delete(
-      'https://todotracker-cho3.onrender.com/api/tasks/{}',
+      'https://todotracker-cho3.onrender.com/api/tasks/' + `${data}`,
       {
         headers: header,
       }
@@ -62,14 +62,14 @@ export class CrudTaskService {
   }
 
   // method to edit the todoList
-  public editTask(token: any, id: number, taskForm: any) {
+  public editTask(Token: any, taskForm: any, id: any) {
     this.spinner.show();
     let header = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${Token}`,
     });
-    return this.http.post(
-      'https://todotracker-cho3.onrender.com/api/tasks/create',
+    return this.http.put(
+      'https://todotracker-cho3.onrender.com/api/tasks/' + `${id}`,
       taskForm,
       {
         headers: header,

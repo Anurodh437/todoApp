@@ -37,15 +37,17 @@
             bindLabel="name"
             placeholder="Select"
             formControlName="priority"
-            [(ngModel)]="selectedValue"
           >
           </ng-select>
         </div>
         <div class="mt-3">
-          <button class="btn btn-primary me-3" type="submit">
+          <button class="btn btn-primary me-3" type="submit" *ngIf="!globals.editCheck">
             Create Task
           </button>
-          <button class="btn btn-danger" type="reset">Reset Field</button>
+          <button class="btn btn-primary me-3" type="button" (click)="updateTask()" *ngIf="globals.editCheck">
+            Update Task
+          </button>
+          <button class="btn btn-danger" type="reset" >Reset Field</button>
         </div>
       </form>
     </div>

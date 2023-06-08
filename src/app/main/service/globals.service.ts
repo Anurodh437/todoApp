@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class GlobalsService {
   userInfo: any;
   taskArray: any;
+  editdata: any;
+  editCheck: boolean = false;
   searchText: any;
   filteredData: any;
   showLoader: boolean = false;
@@ -16,7 +18,5 @@ export class GlobalsService {
     this.filteredData = this.taskArray.filter((item: any) => {
       return item.title.toLowerCase().includes(this.searchText.toLowerCase());
     });
-    console.log(this.filteredData);
-    
   }
 }
