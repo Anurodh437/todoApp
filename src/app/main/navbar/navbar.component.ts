@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { GlobalsService } from '../service/globals.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +8,11 @@ import { GlobalsService } from '../service/globals.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(public globals: GlobalsService) {}
+  constructor(public globals: GlobalsService, private router: Router) {}
 
   ngOnInit(): void {}
   logout() {
-    console.log('logged out');
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

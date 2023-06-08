@@ -10,11 +10,15 @@
       Create New Task
     </button>
     <!-- checking accordion -->
+    <div class="item" *ngIf="globals?.showLoader">
+      <ngx-skeleton-loader count="5"></ngx-skeleton-loader>
+    </div>
+
     <div class="accordion" id="accordionExample">
       <div
         class="accordion-item mb-2"
         *ngFor="
-          let item of globals.filteredData
+          let item of globals.filteredData?.reverse()
             | paginate : { itemsPerPage: 8, currentPage: p };
           let i = index
         "
@@ -33,12 +37,15 @@
           >
             {{ item.title }}
           </button>
-          <button class="btn-adjust btn btn-primary" (click)="opens()">
+          <button class="btn-adjust btn btn-primary" (click)="editTask(item)">
             <img
               src="https://img.icons8.com/external-becris-lineal-becris/24/ffffff/external-edit-mintab-for-ios-becris-lineal-becris.png"
             />
           </button>
-          <button class="btn-adjust-delete btn btn-danger" (click)="opens()">
+          <button
+            class="btn-adjust-delete btn btn-danger"
+            (click)="deleteTask()"
+          >
             <img
               src="https://img.icons8.com/material-rounded/24/ffffff/filled-trash.png"
             />
@@ -51,7 +58,22 @@
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
-            <div class="badge bg-success">
+            <div
+              class="badge bg-success"
+              *ngIf="item?.priority['name'] == 'Low'"
+            >
+              Priority - {{ item?.priority["name"] }}
+            </div>
+            <div
+              class="badge bg-warning"
+              *ngIf="item?.priority['name'] == 'Medium'"
+            >
+              Priority - {{ item?.priority["name"] }}
+            </div>
+            <div
+              class="badge bg-danger"
+              *ngIf="item?.priority['name'] == 'High'"
+            >
               Priority - {{ item?.priority["name"] }}
             </div>
             <figure>
@@ -69,7 +91,7 @@
         </div>
       </div>
     </div>
-    <span>Total result(s) found : {{ globals?.taskArray?.length }}</span>
+    <span>Total result(s) found : {{ globals?.filteredData?.length }}</span>
     <pagination-controls
       class="float-end"
       (pageChange)="p = $event"

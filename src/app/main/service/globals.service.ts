@@ -8,6 +8,7 @@ export class GlobalsService {
   taskArray: any;
   searchText: any;
   filteredData: any;
+  showLoader: boolean = false;
   constructor() {}
 
   addNewItem(value: string) {

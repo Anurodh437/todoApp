@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainRoutingModule } from './main-routing.module';
@@ -16,6 +16,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { CrudTaskService } from './service/crud-task.service';
 import { AuthService } from '../auth.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { GlobalsService } from './service/globals.service';
 @NgModule({
   declarations: [
     TodoComponent,
@@ -35,8 +37,19 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     NgxSpinnerModule,
     NgSelectModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxSkeletonLoaderModule.forRoot({
+      animation: 'progress-dark',
+      loadingText: 'This item is actually loading...',
+      theme: {
+        background:'#edfffe',
+        extendsFromRoot: true,
+        height: '30px',
+      },
+
+    }),
   ],
-  providers: [CrudTaskService, AuthService],
+  providers: [CrudTaskService, AuthService, GlobalsService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MainModule {}

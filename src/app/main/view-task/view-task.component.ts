@@ -4,6 +4,7 @@ import { HotToastModule, HotToastService } from '@ngneat/hot-toast';
 import { CrudTaskService } from 'src/app/main/service/crud-task.service';
 import { GlobalsService } from '../service/globals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-task',
@@ -18,9 +19,8 @@ export class ViewTaskComponent implements OnInit {
     public crudService: CrudTaskService,
     private router: Router,
     private toast: HotToastService,
-    public globals:GlobalsService,
+    public globals: GlobalsService,
     private spinner: NgxSpinnerService
-    
   ) {}
 
   ngOnInit(): void {
@@ -33,16 +33,38 @@ export class ViewTaskComponent implements OnInit {
       next: (data: any) => {
         this.globals.taskArray = data;
         this.globals.filteredData = this.globals.taskArray;
-        this.spinner.hide()
+        this.spinner.hide();
+        this.globals.showLoader = false;
       },
     });
   }
-  opens() {
+  editTask(i:any) {
     this.toast.show('jdhfjdbfhj');
+    console.log("dubey",i._id);
   }
-  addItem(e: any) {
-    console.log('anurodh', e);
+
+  deleteTask() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+    
   }
+
+
   navigateToUrl() {
     this.router.navigate(['/addTask']);
   }

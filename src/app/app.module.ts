@@ -8,6 +8,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
