@@ -36,6 +36,21 @@ export class AuthService {
     );
   }
 
+  updateUser(token: any, value: any) {
+    this.spinner.show();
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post(
+      'https://todotracker-cho3.onrender.com/api/users/updateProfile',
+      value,
+      {
+        headers: header,
+      }
+    );
+  }
+
   storeUserData(data: any) {
     sessionStorage.setItem('user-profile', JSON.stringify(data));
   }

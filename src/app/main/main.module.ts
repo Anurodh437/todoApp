@@ -14,10 +14,10 @@ import { WelcometitleComponent } from './welcometitle/welcometitle.component';
 import { ProfileScreenComponent } from './profile-screen/profile-screen.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CrudTaskService } from './service/crud-task.service';
-import { AuthService } from '../auth.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { GlobalsService } from './service/globals.service';
+import { AuthService } from './service/auth.service';
 @NgModule({
   declarations: [
     TodoComponent,
@@ -49,7 +49,7 @@ import { GlobalsService } from './service/globals.service';
 
     }),
   ],
-  providers: [CrudTaskService, AuthService, GlobalsService],
+  providers: [CrudTaskService,AuthService, GlobalsService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MainModule {}

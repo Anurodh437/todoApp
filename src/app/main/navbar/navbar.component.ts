@@ -9,8 +9,10 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   constructor(public globals: GlobalsService, private router: Router) {}
-
-  ngOnInit(): void {}
+  userInfo: any;
+  ngOnInit(): void {
+    this.userInfo = JSON.parse(sessionStorage.getItem('user-profile') || '{}');
+  }
   logout() {
     sessionStorage.clear();
     this.router.navigate(['/login']);
