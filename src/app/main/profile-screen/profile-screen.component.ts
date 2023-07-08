@@ -33,6 +33,7 @@ export class ProfileScreenComponent implements OnInit {
     });
   }
 
+  // function to call api and fetch its response
   updateTask() {
     this.auth
       .updateUser(this.userInfo['token'], this.updateProfileForm.value)
@@ -45,13 +46,14 @@ export class ProfileScreenComponent implements OnInit {
         },
         error: (err) => {
           this.spinner.hide();
-          this.toast.error("Something went wrong!")
+          this.toast.error('Something went wrong!');
         },
       });
     this.ngOnInit();
   }
 
-  image(e: any) {
+  // function to generate cloudinary image url after image upload
+  generateImageUrl(e: any) {
     const fileData = e.target.files[0];
     const form_data = new FormData();
     form_data.append('file', fileData);
@@ -60,7 +62,6 @@ export class ProfileScreenComponent implements OnInit {
 
     this.global.imageUpload(form_data).subscribe({
       next: (data: any) => {
-        
         this.updateProfileForm.controls['image'].setValue(data.url);
       },
     });

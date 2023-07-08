@@ -91,13 +91,17 @@
         </div>
       </div>
     </div>
-    <span *ngIf="!globals?.showLoader"
-      >Total result(s) found : {{ globals?.filteredData?.length }}</span
-    >
-    <pagination-controls
-      *ngIf="!globals?.showLoader"
-      class="float-end"
-      (pageChange)="p = $event"
-    ></pagination-controls>
+    <div class="row">
+      <div class="col-12">
+        <span *ngIf="!globals?.showLoader"
+          >Total result(s) found : {{ globals?.filteredData?.length }}</span
+        >
+        <pagination-controls
+          *ngIf="!globals?.showLoader && globals?.filteredData?.length > 0"
+          class="float-end"
+          (pageChange)="p = $event"
+        ></pagination-controls>
+      </div>
+    </div>
   </div>
 </div>
